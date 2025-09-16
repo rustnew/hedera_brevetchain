@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brevetchain - Dépôt de Brevets Simplifié</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <div class="logo-img">B</div>
+                <div class="logo-text">Brevetchain</div>
+            </div>
+            <nav>
+                <a href="#" class="nav-link active" data-tab="home">Accueil</a>
+                <a href="#" class="nav-link" data-tab="submit">Déposer</a>
+                <a href="#" class="nav-link" data-tab="dashboard">Mes brevets</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Section Accueil -->
+        <section id="home" class="tab-content active">
+            <div class="hero">
+                <h1>Protégez vos inventions avec l'IA et la Blockchain</h1>
+                <p>Notre plateforme transforme vos idées en brevets professionnels en quelques minutes.</p>
+                <button class="btn-primary" data-tab="submit">Commencer maintenant</button>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-icon">🤖</div>
+                    <h3>IA Intelligente</h3>
+                    <p>Génération automatique des revendications et descriptions techniques grâce à notre intelligence artificielle de pointe</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔗</div>
+                    <h3>Blockchain</h3>
+                    <p>Preuve d'antériorité immuable sur Hedera Hashgraph avec horodatage certifié et traçabilité complète</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Rapide & Simple</h3>
+                    <p>Processus simplifié sans intermédiaires coûteux. Obtenez votre brevet en quelques clics seulement</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section Dépôt de brevet -->
+        <section id="submit" class="tab-content">
+            <h2>Déposer un nouveau brevet</h2>
+            
+            <div id="alert" class="alert hidden"></div>
+
+            <form id="patentForm" class="form">
+                <div class="form-section">
+                    <h3>Informations personnelles</h3>
+                    <div class="form-group">
+                        <label for="fullName">Nom complet *</label>
+                        <input type="text" id="fullName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="walletAddress">Adresse Wallet *</label>
+                        <input type="text" id="walletAddress" required placeholder="0.0.1234">
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Description de l'invention</h3>
+                    <div class="form-group">
+                        <label for="rawIdea">Décrivez votre invention *</label>
+                        <textarea id="rawIdea" required placeholder="Expliquez le problème que votre invention résout, son fonctionnement, ses avantages et ses applications potentielles..."></textarea>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-primary">Générer le brevet</button>
+            </form>
+
+            <div id="result" class="hidden">
+                <h3>Résultat généré par l'IA</h3>
+                <div class="form-group">
+                    <label for="patentTitle">Titre</label>
+                    <input type="text" id="patentTitle" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="patentClaims">Revendications</label>
+                    <textarea id="patentClaims" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="patentSummary">Résumé</label>
+                    <textarea id="patentSummary" readonly></textarea>
+                </div>
+                <button id="submitBlockchain" class="btn-primary">Enregistrer sur la Blockchain</button>
+            </div>
+        </section>
+
+        <!-- Tableau de bord -->
+        <section id="dashboard" class="tab-content">
+            <h2>Mes brevets déposés</h2>
+            <div id="patentsList" class="patents-list">
+                <p class="empty-state">Aucun brevet déposé pour le moment.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>Brevetchain &copy; 2023 - Plateforme de dépôt de brevets basée sur Blockchain et IA</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
