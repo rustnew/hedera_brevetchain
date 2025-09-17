@@ -20,6 +20,7 @@ hex = "0.4.3"
 sha2 = {version="0.10.6"}
 rustc-hex = "2.1.0"
 anyhow = "1.0.99"
+actix-files = "0.6.8"
 
 
 [[bin]]

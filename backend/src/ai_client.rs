@@ -1,5 +1,5 @@
 use reqwest;
-use serde::{ Serialize};
+use serde::{Serialize};
 use std::time::Duration;
 use crate::models::AiResponse;
 

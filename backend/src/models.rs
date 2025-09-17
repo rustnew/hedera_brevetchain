@@ -1,6 +1,5 @@
 use chrono::{DateTime, Utc};
 use serde::{Deserialize, Serialize};
-use serde_json::Value;
 use sqlx::FromRow;
 use uuid::Uuid;
 
@@ -15,53 +14,8 @@ pub struct User {
     pub created_at: DateTime<Utc>,
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone, FromRow)]
-pub struct PatentDraft {
-    pub id: Uuid,
-    pub user_id: Uuid,
-    pub raw_idea: String,
-    pub status: String,
-    pub created_at: DateTime<Utc>,
-    pub hedera_tx_id: Option<String>,
-}
-
 #[derive(Debug, Serialize, Deserialize, Clone)]
-pub enum PatentStatus {
-    Draft,
-    Submitted,
-    Rejected,
-    OnBlockchain,
-}
-
-impl PatentStatus {
-    pub fn from_str(status: &str) -> Result<Self, String> {
-        match status.to_lowercase().as_str() {
-            "draft" => Ok(PatentStatus::Draft),
-            "submitted" => Ok(PatentStatus::Submitted),
-            "rejected" => Ok(PatentStatus::Rejected),
-            "on_blockchain" => Ok(PatentStatus::OnBlockchain),
-            _ => Err(format!("Statut invalide: {}", status)),
-        }
-    }
-
-    pub fn as_str(&self) -> &'static str {
-        match self {
-            PatentStatus::Draft => "draft",
-            PatentStatus::Submitted => "submitted",
-            PatentStatus::Rejected => "rejected",
-            PatentStatus::OnBlockchain => "on_blockchain",
-        }
-    }
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct SubmitIdeaRequest {
-    pub user: UserInfo,
-    pub patent: PatentInput,
-}
-
-#[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct UserInfo {
+pub struct RegisterUserRequest {
     pub full_name: String,
     pub email: String,
     pub phone: Option<String>,
@@ -70,8 +24,41 @@ pub struct UserInfo {
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
-pub struct PatentInput {
+pub struct RegisterUserResponse {
+    pub user_id: Uuid,
+    pub message: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, FromRow)]
+pub struct Idea {
+    pub id: Uuid,
+    pub user_id: Uuid,
     pub raw_idea: String,
+    pub created_at: DateTime<Utc>,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct SubmitIdeaRequest {
+    pub user_id: Uuid, // ✅ Obligatoire — l'utilisateur doit être enregistré
+    pub raw_idea: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct SubmitIdeaResponse {
+    pub idea_id: Uuid,
+    pub message: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone, FromRow)]
+pub struct Summary {
+    pub id: Uuid,
+    pub idea_id: Uuid,
+    pub title: String,
+    pub problem: String,
+    pub solution: String,
+    pub claim: String, // ✅ MVP: une seule revendication principale
+    pub cpc_code: String,
+    pub created_at: DateTime<Utc>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -79,26 +66,40 @@ pub struct AiResponse {
     pub title: String,
     pub problem: String,
     pub solution: String,
-    pub claims: Vec<String>,
+    pub claim: String, // ✅ Simplifié pour MVP
     pub cpc_code: String,
     pub novelty_score: u8,
 }
 
-#[derive(Debug, Serialize, Clone, FromRow)]
-pub struct StructuredPatent {
+#[derive(Debug, Serialize, Deserialize, Clone, FromRow)]
+pub struct Proof {
     pub id: Uuid,
-    pub patent_draft_id: Uuid,
-    pub title: String,
-    pub problem: String,
-    pub solution: String,
-    pub claims: Value,
-    pub cpc_code: String,
+    pub summary_id: Uuid,
+    pub hash: String,
+    pub hedera_tx_id: String,
+    pub timestamp: DateTime<Utc>,
     pub created_at: DateTime<Utc>,
 }
 
-#[derive(Debug, Serialize)]
-pub struct SubmitIdeaResponse {
-    pub patent_id: Uuid,
-    pub message: String,
-    pub structured_patent: Option<StructuredPatent>,
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct CertificateResponse {
+    pub hash: String,
+    pub timestamp: String,
+    pub hedera_tx_id: String,
+    pub explorer_url: String,
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct StatusResponse {
+    pub idea_received: bool,
+    pub ia_summary_ready: bool,
+    pub hedera_proof_registered: bool,
+    pub agent_validated: bool, // ✅ Toujours false dans MVP — placeholder
+    pub office_submitted: bool, // ✅ Toujours false dans MVP — placeholder
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct HealthResponse {
+    pub status: String,
+    pub services: Vec<String>,
 }

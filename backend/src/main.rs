@@ -1,5 +1,6 @@
 use actix_cors::Cors;
-use actix_web::{App, HttpServer, web};
+use actix_web::{App, HttpServer, web,  middleware};
+use actix_files::Files;
 use sqlx::PgPool;
 use dotenvy::dotenv;
 use std::env;
@@ -19,27 +20,39 @@ async fn create_pool() -> PgPool {
 async fn main() -> std::io::Result<()> {
     let pool = web::Data::new(create_pool().await);
 
-    println!("Backend en cours d'exécution sur http://127.0.0.1:8080");
+    println!("🚀 Backend MVP BrevetChain démarré sur http://127.0.0.1:8080");
 
     HttpServer::new(move || {
         let cors = Cors::default()
             .allowed_origin("http://localhost:3000")
-            .allowed_origin("http://127.0.0.1:3000")// Ajout pour prod
-            .allowed_methods(vec!["GET", "POST", "PUT", "DELETE"])
-            .allowed_headers(vec![actix_web::http::header::CONTENT_TYPE])
-            .supports_credentials();
+            .allowed_origin("http://127.0.0.1:3000")
+            .allowed_methods(vec!["GET", "POST"])
+            .allowed_headers(vec![
+                actix_web::http::header::CONTENT_TYPE,
+                actix_web::http::header::AUTHORIZATION,
+                actix_web::http::header::ACCEPT,
+            ])
+            .supports_credentials()
+            .max_age(3600);
 
         App::new()
             .wrap(cors)
-            .wrap(actix_web::middleware::Logger::default())
+            .wrap(middleware::Logger::default())
             .app_data(pool.clone())
             .service(
-                web::scope("/api")
-                    .route("/submit", web::post().to(routes::submit_idea))
-                    .route("/structured/{patent_id}", web::get().to(routes::get_structured_patent))
-                    .route("/verify/{patent_id}", web::get().to(routes::verify_patent))
-                    .route("/drafts/{user_id}", web::get().to(routes::list_user_drafts)) // Bonus
+                web::scope("/api/v1")
+                    .route("/register", web::post().to(routes::register_user)) // ✅ Création de compte OBLIGATOIRE
+                    .route("/submit-idea", web::post().to(routes::submit_idea)) // ✅ Fonction 1
+                    .route("/generate-summary/{idea_id}", web::post().to(routes::generate_summary)) // ✅ Fonction 2
+                    .route("/register-proof/{summary_id}", web::post().to(routes::register_proof)) // ✅ Fonction 3
+                    .route("/certificate/{summary_id}", web::get().to(routes::get_certificate)) // ✅ Fonction 4
+                    .route("/status/{idea_id}", web::get().to(routes::get_status)) // ✅ Fonction 5
+                    .route("/health", web::get().to(routes::health)) // ✅ Fonction 7
+                    // Fonction 6 (CRUD agents/offices) est structurée mais désactivée → placeholder
+                    .route("/agent/register", web::post().to(routes::agent_register_placeholder))
+                    .route("/office/register", web::post().to(routes::office_register_placeholder))
             )
+            .service(Files::new("/", "../frontend").index_file("index.html"))
     })
     .bind(("127.0.0.1", 8080))?
     .run()

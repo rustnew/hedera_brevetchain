@@ -1,5 +1,5 @@
--- Création de la table users
-CREATE TABLE users (
+-- Table des utilisateurs (obligatoire)
+CREATE TABLE IF NOT EXISTS users (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     full_name TEXT NOT NULL,
     email TEXT UNIQUE NOT NULL,
@@ -9,32 +9,37 @@ CREATE TABLE users (
     created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT NOW()
 );
 
-CREATE TABLE patent_drafts (
+-- Table des idées brutes
+CREATE TABLE IF NOT EXISTS ideas (
     id UUID PRIMARY KEY,
-    user_id UUID NOT NULL,
+    user_id UUID NOT NULL REFERENCES users(id),
     raw_idea TEXT NOT NULL,
-    status TEXT NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
-    hedera_tx_id TEXT,
-    FOREIGN KEY (user_id) REFERENCES users(id)
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL
 );
 
-CREATE TABLE structured_patents (
+-- Table des résumés IA
+CREATE TABLE IF NOT EXISTS summaries (
     id UUID PRIMARY KEY,
-    patent_draft_id UUID NOT NULL,
+    idea_id UUID NOT NULL REFERENCES ideas(id),
     title TEXT NOT NULL,
     problem TEXT NOT NULL,
     solution TEXT NOT NULL,
-    claims JSONB NOT NULL,
+    claim TEXT NOT NULL, -- Une seule revendication pour MVP
     cpc_code TEXT NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
-    FOREIGN KEY (patent_draft_id) REFERENCES patent_drafts(id)
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL
 );
 
--- Index pour améliorer les performances
-CREATE INDEX idx_users_email ON users(email);
-CREATE INDEX idx_patent_drafts_user_id ON patent_drafts(user_id);
-CREATE INDEX idx_patent_drafts_status ON patent_drafts(status);
-CREATE INDEX idx_structured_patents_draft_id ON structured_patents(patent_draft_id);
-CREATE INDEX idx_patent_drafts_created_at ON patent_drafts(created_at);
-CREATE INDEX idx_structured_patents_created_at ON structured_patents(created_at);
+-- Table des preuves Hedera
+CREATE TABLE IF NOT EXISTS proofs (
+    id UUID PRIMARY KEY,
+    summary_id UUID NOT NULL REFERENCES summaries(id),
+    hash TEXT NOT NULL,
+    hedera_tx_id TEXT NOT NULL,
+    timestamp TIMESTAMP WITH TIME ZONE NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL
+);
+
+-- Index pour performances
+CREATE INDEX IF NOT EXISTS idx_ideas_user_id ON ideas(user_id);
+CREATE INDEX IF NOT EXISTS idx_summaries_idea_id ON summaries(idea_id);
+CREATE INDEX IF NOT EXISTS idx_proofs_summary_id ON proofs(summary_id);
