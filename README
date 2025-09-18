@@ -1,114 +1,143 @@
-
-
 # 🚀 BrevetChain — Plateforme de Dépôt de Brevets IA + Blockchain
 
 > **Protégez votre invention en 3 minutes. Simple. Sûr. Abordable.**
 
-BrevetChain révolutionne l’accès à la propriété intellectuelle en combinant **l’intelligence artificielle pour la simplicité**, **la blockchain Hedera pour la sécurité**, et **une intégration fluide avec les professionnels et offices de brevets pour la crédibilité juridique**. Notre mission : permettre à **tout inventeur, même sans formation technique ou juridique, de protéger son idée** — rapidement, à moindre coût, et avec une preuve d’antériorité incontestable.
+BrevetChain révolutionne l’accès à la propriété intellectuelle. En combinant **l’intelligence artificielle pour la simplicité**, **la blockchain Hedera pour la sécurité**, et **une intégration fluide avec les professionnels et offices de brevets pour la crédibilité juridique**, nous permettons à **tout inventeur, même sans formation technique ou juridique, de protéger son idée** — rapidement, à moindre coût, et avec une preuve d’antériorité incontestable.
 
----
+-----
 
 ## 🎯 Vision & Philosophie
 
-Nous ne remplaçons pas le système — nous le rendons **accessible, fluide et inclusif**.
+Nous ne remplaçons pas le système, nous le rendons **accessible, fluide et inclusif**.
 
-- **IA = Votre assistant personnel** : Elle vous guide, structure votre idée, génère un dossier pré-conforme. Elle ne remplace pas l’expertise humaine — elle la rend accessible.
-- **Blockchain = Votre notaire numérique** : Elle sécurise votre idée dès la première seconde, avec un horodatage immuable sur Hedera. Preuve d’antériorité vérifiable par tous.
-- **Agents & Offices = Vos partenaires de confiance** : Intégrés nativement dans la plateforme. Validation juridique à la demande. Soumission officielle en un clic. Collaboration, pas concurrence.
+  - **IA = Votre assistant personnel** : Elle vous guide, structure votre idée et génère un dossier pré-conforme. L'IA ne remplace pas l’expertise humaine, elle la rend accessible.
+  - **Blockchain = Votre notaire numérique** : Elle sécurise votre idée dès la première seconde avec un horodatage immuable sur Hedera. Preuve d’antériorité vérifiable par tous.
+  - **Agents & Offices = Vos partenaires de confiance** : Intégrés nativement dans la plateforme. Validation juridique à la demande et soumission officielle en un clic. Nous prônons la collaboration, pas la concurrence.
 
----
+-----
 
 ## 💡 Problème & Solution
 
 ### Le dépôt de brevets aujourd’hui :
-- **Trop cher** → jusqu’à 10 000 € avec un avocat.
-- **Trop complexe** → langage juridique, exigences techniques.
-- **Trop lent** → plusieurs mois, voire années.
-- **Inaccessible** → aux inventeurs individuels, peu instruits, ou sans ressources.
+
+  - **Trop cher** : jusqu’à 10 000 € avec un avocat.
+  - **Trop complexe** : langage juridique et exigences techniques.
+  - **Trop lent** : plusieurs mois, voire des années.
+  - **Inaccessible** : pour les inventeurs individuels, sans formation ou ressources.
 
 ### Notre solution :
-- **Coût divisé par 10** → grâce à l’automatisation IA.
-- **Délai réduit à 3 jours** → flux digitalisé de A à Z.
-- **Interface ultra-simple** → texte, audio, vidéo — aucune compétence requise.
-- **Preuve blockchain immédiate** → sécurité dès la première étape.
 
----
+  - **Coût divisé par 10** grâce à l’automatisation IA.
+  - **Délai réduit à 3 jours** grâce à un flux digitalisé de A à Z.
+  - **Interface ultra-simple** (texte, audio, vidéo) : aucune compétence requise.
+  - **Preuve blockchain immédiate** pour une sécurité dès la première étape.
+
+-----
 
 ## 🧩 Fonctionnalités Clés (MVP Live)
 
-1.  **Inscription en 30 secondes** → avec ou sans wallet.
-2.  **Décrivez votre idée simplement** → par texte ou audio.
-3.  **IA génère un résumé structuré** → titre, problème, solution, revendication, CPC.
-4.  **Preuve d’antériorité sur Hedera** → horodatage + hash immuable.
-5.  **Certificat téléchargeable** → avec lien de vérification public sur HashScan.
-6.  **Statut en temps réel** → suivez chaque étape : idée → IA → blockchain → (bientôt : agent → office).
-7.  **Placeholder pour agents & offices** → structure prête pour validation humaine et soumission officielle.
+1.  **Inscription en 30 secondes** : avec ou sans wallet crypto.
+2.  **Décrivez votre idée simplement** : par texte ou audio.
+3.  **L'IA génère un résumé structuré** : titre, problème, solution, revendication, CPC.
+4.  **Preuve d’antériorité sur Hedera** : horodatage et hash immuable.
+5.  **Certificat téléchargeable** : avec un lien de vérification public sur HashScan.
+6.  **Statut en temps réel** : suivez chaque étape, de l’idée à la blockchain (et bientôt : de l’agent à l’office).
+7.  **Placeholder pour agents & offices** : la structure est prête pour la validation humaine et la soumission officielle.
 
----
+-----
 
-## ⚙️ Technologie
+## ⚙️ Technologie & Architecture
 
-- **Backend** : Rust (sécurité, performance, fiabilité).
-- **Frontend** : HTML/CSS/JS (léger, accessible, 3D immersive).
-- **Blockchain** : **Hedera Hashgraph** — rapide, peu coûteux, gouvernance d’entreprise, idéal pour la preuve légale.
-- **IA** : Modèles de langage pour la structuration, recherche d’antériorité sémantique.
-- **Base de données** : PostgreSQL avec vérification compile-time via SQLx.
+  - **Backend** : Rust (sécurité, performance, fiabilité).
+  - **Frontend** : HTML/CSS/JS (léger, accessible, 3D immersive).
+  - **Blockchain** : **Hedera Hashgraph** — rapide, peu coûteux et idéal pour la preuve légale grâce à sa gouvernance d’entreprise.
+  - **IA** : Modèles de langage pour la structuration et la recherche d’antériorité sémantique.
+  - **Base de données** : PostgreSQL avec vérification compile-time via SQLx.
 
----
+-----
 
 ## 🔐 Valeur Juridique
 
-- **Preuve d’antériorité** : L’horodatage blockchain est reconnu comme preuve dans de plus en plus de juridictions (France, UE, etc.).
-- **Conformité** : La plateforme est conçue pour s’intégrer aux systèmes des offices (INPI, USPTO, OEB) — pas pour les contourner.
-- **Confidentialité** : Vos idées sont chiffrées. Rien n’est publié sans votre accord.
-- **Transparence** : Chaque action est enregistrée sur la blockchain — traçabilité totale.
+  - **Preuve d’antériorité** : L’horodatage blockchain est reconnu comme preuve dans de plus en plus de juridictions (France, UE, etc.).
+  - **Conformité** : La plateforme est conçue pour s’intégrer aux systèmes des offices (INPI, USPTO, OEB), pas pour les contourner.
+  - **Confidentialité** : Vos idées sont chiffrées. Rien n’est publié sans votre accord.
+  - **Transparence** : Chaque action est enregistrée sur la blockchain pour une traçabilité totale.
 
----
+-----
 
 ## 📈 Modèle Économique (Future)
 
-- **Freemium** : Dépôt + preuve blockchain = gratuit ou très bas coût.
-- **Premium** : Validation par agent certifié, soumission officielle, analyse approfondie.
-- **Partenariats** : Collaboration avec offices pour réduire les frais officiels.
-- **Tokenisation** (v2) : Monétisation des brevets via NFT, licences automatisées par smart contract.
+  - **Freemium** : Dépôt et preuve blockchain à un coût très bas, voire gratuit.
+  - **Premium** : Validation par un agent certifié, soumission officielle, analyse approfondie.
+  - **Partenariats** : Collaborations avec les offices pour réduire les frais officiels.
+  - **Tokenisation (v2)** : Monétisation des brevets via NFT et licences automatisées par smart contract.
 
----
+-----
 
 ## 🚧 Prochaines Étapes
 
-1.  **Recrutement d’agents partenaires** → validation juridique en production.
-2.  **Intégration API avec INPI/EPO** → soumission officielle directe.
-3.  **Ajout du paiement** → CB, crypto, mobile money.
-4.  **Version mobile native** → Android/iOS.
-5.  **Campagne de sensibilisation** → auprès des inventeurs, startups, ONG.
+1.  **Recrutement d’agents partenaires** pour la validation juridique en production.
+2.  **Intégration API avec l’INPI/EPO** pour une soumission officielle directe.
+3.  **Ajout du paiement** (CB, crypto, mobile money).
+4.  **Version mobile native** sur Android et iOS.
+5.  **Campagne de sensibilisation** auprès des inventeurs, startups et ONG.
 
----
+-----
 
 ## 🌍 Impact Social
 
-- **Démocratisation** : Accès aux brevets pour les inventeurs des pays émergents.
-- **Éducation** : Tutoriels intégrés, langage simple, support audio.
-- **Inclusion** : Interface pensée pour les personnes peu instruites ou malvoyantes.
-- **Innovation** : Libérer le potentiel de millions d’idées aujourd’hui perdues.
+  - **Démocratisation** : Rendre l'accès aux brevets possible pour les inventeurs des pays émergents.
+  - **Éducation** : Tutoriels intégrés, langage simple et support audio.
+  - **Inclusion** : Une interface conçue pour les personnes peu instruites ou malvoyantes.
+  - **Innovation** : Libérer le potentiel de millions d’idées aujourd’hui perdues.
 
----
+-----
 
-## 🤝 Rejoignez-nous
+## 🤝 Comment Contribuer
 
-BrevetChain est un projet open-source en constante évolution. Que vous soyez développeur, designer, agent de brevets, ou simplement passionné par l’innovation inclusive — **votre contribution compte**.
+BrevetChain est un projet open-source en constante évolution. Que vous soyez développeur, designer, agent de brevets ou passionné par l’innovation, votre contribution compte.
 
-👉 **Star ⭐ ce repo, fork 🍴, contribuez, ou contactez-nous pour un partenariat.**
+### 💻 Pour les Développeurs
 
----
+1.  **Clonez le dépôt :**
+    ```bash
+    git clone https://github.com/votreusername/BrevetChain_Hedera.git
+    cd BrevetChain_Hedera
+    ```
+2.  **Installez les dépendances :**
+      - Pour le backend (Rust), suivez les instructions dans le dossier `backend`.
+      - Pour le frontend, suivez les instructions dans le dossier `frontend`.
+3.  **Lancez le projet :**
+    ```bash
+    # Dans le dossier 'backend'
+    cargo run
+    ```
+4.  **Créez une pull request :**
+    Nous utilisons Gitflow pour notre processus de développement. Créez une nouvelle branche pour votre fonctionnalité ou votre correctif, puis soumettez une pull request.
+
+### 🎨 Pour les Designers
+
+  - Nous avons besoin de votre aide pour améliorer l'interface utilisateur. Jetez un œil aux issues avec le label `ui/ux` pour découvrir comment vous pouvez nous aider.
+
+### ⚖️ Pour les Agents de Brevets
+
+  - Nous cherchons des partenaires pour notre phase de test. Si vous êtes intéressé, contactez-nous directement via notre site web ou par email.
+
+### 📣 Pour tout le monde
+
+  - **Star ⭐ ce repo, fork 🍴, contribuez ou contactez-nous pour un partenariat.**
+
+-----
 
 > **“L’innovation ne devrait jamais être freinée par la complexité ou le coût. BrevetChain rend la propriété intellectuelle accessible à tous.”**
 
----
+-----
 
-✅ **Prêt à protéger votre idée ? Lancez le serveur et commencez.**
+### **Liens Utiles**
 
-```bash
-git clone https://github.com/votreusername/BrevetChain_Hedera.git
-cd BrevetChain_Hedera/backend
-cargo run
-```
+[](https://www.google.com/search?q=https://www.linkedin.com/company/brevetchain)
+[](https://www.google.com/search?q=https://twitter.com/BrevetChain)
+[](https://www.google.com/search?q=https://discord.com/invite/brevetchain)
+[](https://www.google.com/search?q=https://brevetchain.com)
+
+-----
